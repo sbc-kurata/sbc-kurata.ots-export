@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def defaultEncoding = 'UTF-8'
+tasks.withType(AbstractCompile)*.options*.encoding = defaultEncoding
+tasks.withType(GroovyCompile)*.groovyOptions*.encoding = defaultEncoding
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ots.data.export.ExportDataMain'
+    }
+}
+
+dependencies {
+    implementation("com.aliyun.openservices:tablestore:5.6.0")
+    compile group: 'com.aliyun', name: 'aliyun-java-sdk-core', version: '4.5.1'
+    compile group: 'com.github.mygreen', name: 'xlsmapper', version: '2.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+    compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
+
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+}
