@@ -1,0 +1,10 @@
+# Folder
+build/
+.gradle/
+
+# editor
+.idea/
+
+# exe
+*.exe
+*.jar
